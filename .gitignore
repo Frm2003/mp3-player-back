@@ -1,0 +1,4 @@
+#dependecias
+/node_modules
+
+.env
