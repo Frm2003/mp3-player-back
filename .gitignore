@@ -1,4 +1,6 @@
 #dependecias
-/node_modules
+/backend/node_modules
 
-.env
+#others
+/backend/dist
+.env.db
