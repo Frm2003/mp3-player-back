@@ -1,6 +1,6 @@
 #dependecias
-/backend/node_modules
+/node_modules
 
 #others
-/backend/dist
-.env.db
+/dist
+.env.local
