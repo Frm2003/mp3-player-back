@@ -1,5 +1,5 @@
-import * as metodoUser from './metodos'
+import * as metodoUser from './metodos';
 
 export const UserController = {
-    ...metodoUser
-}
+    ...metodoUser,
+};

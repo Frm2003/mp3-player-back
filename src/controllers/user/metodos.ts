@@ -1,5 +1,18 @@
-import { FastifyRequest, FastifyReply } from "fastify";
+import { insert } from './../../services/UserService';
+import { FastifyRequest, FastifyReply } from 'fastify';
 
-export const insert = async (req: FastifyRequest, res:FastifyReply): Promise<FastifyReply<any>> => {
-    return res.status(200).send("text insert user")
+interface User {
+    nick: string;
+    senha: string;
 }
+
+export const insertUser = async (req: FastifyRequest<{ Body: User }>, res: FastifyReply): Promise<FastifyReply<any>> => {
+    const { nick, senha } = req.body;
+
+    try {
+        const newUser = await insert(nick, senha);
+        return res.status(201).send(newUser);
+    } catch (error) {
+        return res.status(500).send({ error: 'Erro ao criar o usuário', details: error });
+    }
+};
