@@ -4,10 +4,9 @@ services:
         ports:
             - 5432:5432
         environment:
-            - POSTGRES_HOST=localhost
-            - POSTGRES_PORT=5432
-            - POSTGRES_USER=dev
-            - POSTGRES_DB=teste
-            - POSTGRES_PASSWORD=123456
+            - POSTGRES_HOST=${HOST}
+            - POSTGRES_USER=${USER}
+            - POSTGRES_DB=${DB}
+            - POSTGRES_PASSWORD=${PASSWORD}
         container_name: database
         restart: always

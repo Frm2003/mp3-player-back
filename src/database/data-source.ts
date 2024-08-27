@@ -1,13 +1,16 @@
 import { DataSource } from 'typeorm';
 import { User } from '../models/User';
+import 'dotenv/config';
+
+const { HOST, USER, DB, PASSWORD } = process.env
 
 export const AppDataSource = new DataSource({
     type: 'postgres',
-    host: 'localhost',
+    host: HOST,
     port: 5432,
-    username: 'dev',
-    password: '123456',
-    database: 'teste',
+    username: USER,
+    password: PASSWORD,
+    database: DB,
     entities: [User],
     migrations: [__dirname + '/migrations/*.ts'],
     synchronize: false,
