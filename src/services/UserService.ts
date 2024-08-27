@@ -1,5 +1,5 @@
 import { InsertResult } from "typeorm";
-import { AppDataSource } from "../database/config";
+import { AppDataSource } from "../database/data-source";
 import { User } from "../models/User";
 import md5 from 'md5';
 
