@@ -1,9 +1,8 @@
 import { FastifyInstance } from 'fastify';
-import { UserController } from '../../controllers/user';
+import { UserController } from '../../controllers/UserController';
+
+const userController = new UserController();
 
 export const routes = async (fastify: FastifyInstance): Promise<void> => {
-    fastify.get('/', (req, res) => res.status(200).send('teste'))
-
-    //ROTAS PARA USUÁRIO
-    fastify.post('/user', UserController.insertUser);
+    fastify.post('/user', userController.insertUser);
 };
