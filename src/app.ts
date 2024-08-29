@@ -7,7 +7,7 @@ const server = async () => {
     const porta: number = Number(process.env.SERVER_PORT);
 
     try {
-        //await runMigrations();
+        await runMigrations();
 
         await app.listen({ port: porta });
         console.log(`server rodando na porta: ${porta}`);
