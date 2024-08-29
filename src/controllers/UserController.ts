@@ -8,7 +8,11 @@ interface User {
 
 export class UserController {
 
-    async insertUser(req: FastifyRequest<{ Body: User }>, res: FastifyReply): Promise<FastifyReply<any>> {
+    public insertValidation() { 
+        return { schema: { body: { $ref: 'userSchema#' } } } 
+    };
+
+    public async insertUser(req: FastifyRequest<{ Body: User }>, res: FastifyReply): Promise<FastifyReply<any>> {
         const { nick, senha } = req.body;
 
         try {
