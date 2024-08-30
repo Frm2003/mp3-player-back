@@ -1,7 +1,7 @@
 interface SchemaObject {
     $id: string;
     type: string;
-    properties: {[key: string]: any};
+    properties: { [key: string]: any };
     required: string[];
 }
 
@@ -14,8 +14,8 @@ export const schemas: Schemas = {
         $id: 'userSchema',
         type: 'object',
         properties: {
-            nome: {type: 'string'},
-            senha: {type: 'string'},
+            nome: { type: 'string' },
+            senha: { type: 'string' },
         },
         required: ['nome', 'senha'],
     },

@@ -1,8 +1,9 @@
 import { DataSource } from 'typeorm';
+
 import { User } from '../models/User';
 import 'dotenv/config';
 
-const { HOST, USER, DB, PASSWORD } = process.env
+const { HOST, USER, DB, PASSWORD } = process.env;
 
 export const AppDataSource = new DataSource({
     type: 'postgres',
@@ -27,4 +28,4 @@ export const runMigrations = async () => {
     } finally {
         await AppDataSource.destroy();
     }
-}
+};

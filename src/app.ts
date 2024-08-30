@@ -1,6 +1,6 @@
-import "reflect-metadata";
+import 'reflect-metadata';
 import { app } from './server';
-import { runMigrations } from "./database/data-source";
+import { runMigrations } from './database/data-source';
 import 'dotenv/config';
 
 const server = async () => {
@@ -14,7 +14,6 @@ const server = async () => {
     } catch (error) {
         console.log(error);
     }
-
 };
 
 server();

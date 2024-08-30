@@ -1,4 +1,5 @@
 import { FastifyInstance } from 'fastify';
+
 import { UserController } from '../../controllers/UserController';
 import { schemas } from '../middlewares/schemes';
 
@@ -9,5 +10,9 @@ export const routes = async (fastify: FastifyInstance): Promise<void> => {
         fastify.addSchema(schemas[key]);
     }
 
-    fastify.post('/user', userController.insertValidation(), userController.insertUser);
+    fastify.post(
+        '/user',
+        userController.insertValidation(),
+        userController.insertUser
+    );
 };

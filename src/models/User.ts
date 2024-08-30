@@ -1,25 +1,18 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class User {
+    @PrimaryGeneratedColumn() id: number;
 
-    @PrimaryGeneratedColumn() 
-    id: number;
+    @Column({ type: 'varchar', length: 100 }) nick: string;
 
-    @Column({ type: 'varchar', length: 100 })
-    nick: string;
+    @Column({ type: 'varchar', length: 50 }) senha: string;
 
-    @Column({ type: 'varchar', length: 50 })
-    senha: string;
+    @Column({ type: 'date' }) createOn: Date;
 
-    @Column({ type: 'date' })
-    createOn: Date;
+    @Column({ type: 'date' }) updateOn: Date;
 
-    @Column({ type: 'date' })
-    updateOn: Date;
-
-    @Column({ type: 'varchar', length: 25 })
-    situacao: string;
+    @Column({ type: 'varchar', length: 25 }) situacao: string;
 
     constructor(nick: string, senha: string, situacao: string) {
         this.id = 0;
