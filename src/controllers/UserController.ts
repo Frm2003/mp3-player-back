@@ -3,7 +3,7 @@ import { FastifyRequest, FastifyReply } from 'fastify';
 import { insert } from '../services/UserService';
 
 interface User {
-    nick: string;
+    nome: string;
     senha: string;
 }
 
@@ -16,11 +16,10 @@ export class UserController {
         req: FastifyRequest<{ Body: User }>,
         res: FastifyReply
     ): Promise<FastifyReply<any>> {
-        const { nick, senha } = req.body;
+        const { nome, senha } = req.body;
 
         try {
-            const newUser = await insert(nick, senha);
-            return res.status(201).send(newUser);
+            return res.status(201).send(await insert(nome, senha));
         } catch (error) {
             return res
                 .status(500)

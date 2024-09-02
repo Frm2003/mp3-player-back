@@ -4,7 +4,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 export class User {
     @PrimaryGeneratedColumn() id: number;
 
-    @Column({ type: 'varchar', length: 100 }) nick: string;
+    @Column({ type: 'varchar', length: 100 }) nome: string;
 
     @Column({ type: 'varchar', length: 50 }) senha: string;
 
@@ -16,7 +16,7 @@ export class User {
 
     constructor(nick: string, senha: string, situacao: string) {
         this.id = 0;
-        this.nick = nick;
+        this.nome = nick;
         this.senha = senha;
         this.createOn = new Date();
         this.updateOn = new Date();

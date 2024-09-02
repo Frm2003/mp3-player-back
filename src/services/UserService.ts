@@ -6,10 +6,12 @@ import { User } from '../models/User';
 
 const userRepository = AppDataSource.getRepository(User);
 
-export const insert = async (nick: string, senha: string): Promise<User> => {
+export const insert = async (nome: string, senha: string): Promise<User> => {
+    if (nome == '' || senha == '') throw 'há campos em branco';
+
     await AppDataSource.initialize();
 
-    const newUser: User = new User(nick, md5(senha), 'validar');
+    const newUser: User = new User(nome, md5(senha), 'validar');
 
     const result: InsertResult = await userRepository
         .createQueryBuilder()
