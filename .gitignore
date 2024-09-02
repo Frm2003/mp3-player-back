@@ -3,4 +3,5 @@
 
 #others
 /dist
+/coverage
 .env
