@@ -14,7 +14,7 @@ export class Migrations1724705810871 implements MigrationInterface {
                         generationStrategy: 'increment',
                     },
                     {
-                        name: 'nick',
+                        name: 'nome',
                         type: 'varchar',
                         length: '100',
                     },
