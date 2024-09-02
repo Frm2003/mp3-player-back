@@ -1,9 +1,9 @@
 import 'reflect-metadata';
-import { app } from './server';
+import app from './server';
 import { runMigrations } from './database/data-source';
 import 'dotenv/config';
 
-const server = async () => {
+export const server = async () => {
     const porta: number = Number(process.env.SERVER_PORT);
 
     try {
