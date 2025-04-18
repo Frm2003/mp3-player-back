@@ -2,12 +2,12 @@ import { Readable } from 'stream';
 import { FastifyRequest, FastifyReply } from 'fastify';
 
 interface iProps {
-    method: string,
+    method: HttpMethods,
     path?: string,
-    contentType: string,
+    contentType?: ContentType,
 }
 
-export function RequestMapping({ method, path, contentType = 'application/json' }: iProps) {
+export function RequestMapping({ method, path = '', contentType = 'application/json' }: iProps) {
     return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
         const originalMethod = descriptor.value;
 
@@ -24,13 +24,12 @@ export function RequestMapping({ method, path, contentType = 'application/json' 
 
                 if (!result) {
                     console.warn('Nenhum resultado retornado.');
-                    return res.status(204).send(); // No Content
+                    return res.status(204).send();
                 }
 
                 if (result instanceof Readable) {
                     console.log('Respondendo com stream');
 
-                    // Adiciona headers antes de enviar qualquer dado
                     res.raw.writeHead(200, {
                         'Content-Type': contentType,
                         'Content-Disposition': `inline; filename="output.${getFileExtension(contentType)}"`,
@@ -38,7 +37,7 @@ export function RequestMapping({ method, path, contentType = 'application/json' 
 
                     result.on('error', (err) => {
                         console.error('Erro na stream:', err);
-                        res.raw.destroy(err); // Garante que o erro não fique invisível
+                        res.raw.destroy(err);
                     });
 
                     result.pipe(res.raw);
@@ -53,8 +52,12 @@ export function RequestMapping({ method, path, contentType = 'application/json' 
                         .send(result);
                 }
 
-                console.log('Respondendo com JSON');
-                return res.status(200).send(result);
+                if (result instanceof Object) {
+                    console.log('Respondendo com JSON');
+                    return res.status(200).send(result);
+                }
+
+                res.status(200).send(result);
 
             } catch (error) {
                 console.error('Erro interno:', error);
@@ -64,11 +67,13 @@ export function RequestMapping({ method, path, contentType = 'application/json' 
 
         if (!target.routes) target.routes = [];
 
-        target.routes.push({
+        const route: RouteDefinition = {
             method,
-            route: path || '',
+            route: path,
             handler: descriptor.value,
-        });
+        }
+
+        target.routes.push(route);
     };
 }
 

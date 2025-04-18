@@ -4,8 +4,8 @@ import { RequestMapping } from "../../server/decorators/http/requestmapping.deco
 @Controller('/health')
 export default class HealthController {
 
-    @RequestMapping({ method: "get" })
+    @RequestMapping({ method: "get", contentType: 'text/plain' })
     public isAlive() {
-        return 'teste';
+        return 'server está ok';
     }
 }

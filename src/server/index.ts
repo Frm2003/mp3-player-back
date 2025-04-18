@@ -33,6 +33,7 @@ class App {
             console.log('Iniciando servidor ...');
             await this.fastify.listen({ port: port });
             console.log(`Servidor rodando na porta ${port}`);
+            console.log(`-----------------------------------------`);
         } catch (error) {
             console.error(error);
             process.exit(1);
