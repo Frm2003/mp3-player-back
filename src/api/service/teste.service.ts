@@ -11,11 +11,9 @@ export default class TesteService {
         const info = await ytdl.getInfo(url);
 
         const format = ytdl.chooseFormat(info.formats, {
-            quality: 'highest',
+            quality: 'highestaudio',
             filter: 'audioonly',
         });
-
-        console.log('teste')
 
         return ytdl.downloadFromInfo(info, { format });
     }
